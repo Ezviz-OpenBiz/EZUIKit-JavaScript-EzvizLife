@@ -1,6 +1,10 @@
 {
     "data": [
         {
+            "version": "20200107",
+            "envirment": "ezvizlife"
+        },
+        {
             "moduleCode": "",
             "detailCode": "405984",
             "description": "",
@@ -10,7 +14,7 @@
         {
             "moduleCode": "",
             "detailCode": "10035",
-            "description": "获取子账户AccessToken异常,子账户不存在或子账户不属于该开发者",
+            "description": "Getting sub-account AccessToken error.",
             "solution": "",
             "updateTime": 1559551958000
         },
@@ -45,7 +49,7 @@
         {
             "moduleCode": "",
             "detailCode": "20108",
-            "description": "当前用户和所添加用户不是好友关系",
+            "description": "The current user and the added user are not friends",
             "solution": "",
             "updateTime": 1556541725000
         },
@@ -59,14 +63,14 @@
         {
             "moduleCode": "",
             "detailCode": "320001",
-            "description": "通道不存在",
+            "description": "The camera doesn't exist.",
             "solution": "请检查录像机的关联状态是否正常，没有摄像头的通道无法播放",
             "updateTime": 1556419044000
         },
         {
             "moduleCode": "",
             "detailCode": "120001",
-            "description": "通道不存在",
+            "description": "The camera doesn't exist.",
             "solution": "请检查录像机的关联状态是否正常，没有摄像头的通道无法播放",
             "updateTime": 1556419030000
         },
@@ -114,15 +118,15 @@
         },
         {
             "moduleCode": "",
-            "detailCode": "395558",
-            "description": "",
+            "detailCode": "5558",
+            "description": "The start time not available",
             "solution": "",
             "updateTime": 1554987121000
         },
         {
             "moduleCode": "",
             "detailCode": "70001",
-            "description": "智能家居买断用户设备受到限制,建议合理选择pagestart和pageSize",
+            "description": "No permission to get the device information",
             "solution": "",
             "updateTime": 1554691023000
         },
@@ -150,7 +154,7 @@
         {
             "moduleCode": "",
             "detailCode": "60060",
-            "description": "直播功能未开通",
+            "description": "The address is unbound",
             "solution": "通道未开通直播功能，请先开通直播",
             "updateTime": 1554346018000
         },
@@ -304,28 +308,28 @@
         {
             "moduleCode": "",
             "detailCode": "60045",
-            "description": "添加的设备的IP和其他通道的IP冲突",
+            "description": "The added device's IP address is in conflict with other's",
             "solution": "",
             "updateTime": 1548155085000
         },
         {
             "moduleCode": "",
             "detailCode": "60047",
-            "description": "码流类型不支持",
+            "description": "The stream type is not supported",
             "solution": "",
             "updateTime": 1547962108000
         },
         {
             "moduleCode": "",
             "detailCode": "60041",
-            "description": "添加的设备被其他设备关联或响应超时",
+            "description": "The added device is linked with other device or response timeout",
             "solution": "",
             "updateTime": 1547960980000
         },
         {
             "moduleCode": "",
             "detailCode": "110029",
-            "description": "个人用户接口调用频率超限",
+            "description": "The call frequency exceeds the upper-limit",
             "solution": "请升级企业版：https://open.ys7.com/price.html",
             "updateTime": 1547606859000
         },
@@ -451,7 +455,7 @@
         {
             "moduleCode": "",
             "detailCode": "20102",
-            "description": "无相应邀请信息，无法接受邀请",
+            "description": "No corresponding invitation information",
             "solution": "",
             "updateTime": 1545204966000
         },
@@ -465,7 +469,7 @@
         {
             "moduleCode": "",
             "detailCode": "20401",
-            "description": "用户云空间信息不存在",
+            "description": "The information of cloud storage service doesn't exist",
             "solution": "",
             "updateTime": 1545017880000
         },
@@ -500,7 +504,7 @@
         {
             "moduleCode": "",
             "detailCode": "70007",
-            "description": "授权码不存在",
+            "description": "USER IS EXIST",
             "solution": "",
             "updateTime": 1544179533000
         },
@@ -528,7 +532,7 @@
         {
             "moduleCode": "",
             "detailCode": "10031",
-            "description": "子账户或萤石用户没有权限",
+            "description": "The sub-account or the EZVIZ user has no permission",
             "solution": "",
             "updateTime": 1543990462000
         },
@@ -563,14 +567,14 @@
         {
             "moduleCode": "",
             "detailCode": "20104",
-            "description": "好友不存在",
+            "description": "The friend doesn't exist",
             "solution": "",
             "updateTime": 1543492403000
         },
         {
             "moduleCode": "",
             "detailCode": "20111",
-            "description": "好友不是等待验证状态，无法接受邀请",
+            "description": "The friend is not on the to-be-verified status.",
             "solution": "",
             "updateTime": 1543492365000
         },
@@ -605,7 +609,7 @@
         {
             "moduleCode": "",
             "detailCode": "20015",
-            "description": "设备不支持",
+            "description": "Unsupported by the device.",
             "solution": "",
             "updateTime": 1543390936000
         },
@@ -654,7 +658,7 @@
         {
             "moduleCode": "",
             "detailCode": "60044",
-            "description": "添加的设备网络不可达超时",
+            "description": "Timeout. The added device's IP address is unreachable",
             "solution": "",
             "updateTime": 1543304102000
         },
@@ -710,7 +714,7 @@
         {
             "moduleCode": "",
             "detailCode": "20021",
-            "description": "设备在线，未被用户添加",
+            "description": "The device is online but hasn't been added by user.",
             "solution": "",
             "updateTime": 1543193436000
         },
@@ -738,7 +742,7 @@
         {
             "moduleCode": "",
             "detailCode": "20109",
-            "description": "对应分享不存在",
+            "description": "The corresponding sharing doesn't exist",
             "solution": "",
             "updateTime": 1543129111000
         },
@@ -829,7 +833,7 @@
         {
             "moduleCode": "",
             "detailCode": "20016",
-            "description": "当前设备正在格式化",
+            "description": "The current device is formatting...",
             "solution": "",
             "updateTime": 1543028537000
         },
@@ -871,7 +875,7 @@
         {
             "moduleCode": "",
             "detailCode": "20301",
-            "description": "根据uuid查询联动信息不存在",
+            "description": "The alarm information is no found after searching via uuid",
             "solution": "",
             "updateTime": 1542988651000
         },
@@ -934,7 +938,7 @@
         {
             "moduleCode": "",
             "detailCode": "10004",
-            "description": "用户不存在",
+            "description": "The user doesn't exist.",
             "solution": "",
             "updateTime": 1542976268000
         },
@@ -948,7 +952,7 @@
         {
             "moduleCode": "",
             "detailCode": "20024",
-            "description": "设备不在线，已经被别的用户添加",
+            "description": "The device is offline. The device has been added by another user.",
             "solution": "",
             "updateTime": 1542975858000
         },
@@ -969,7 +973,7 @@
         {
             "moduleCode": "",
             "detailCode": "20031",
-            "description": "请在萤石客户端关闭终端绑定",
+            "description": "lease disable the binding of the terminal on EZVIZ client.",
             "solution": "",
             "updateTime": 1542974756000
         },
@@ -1004,21 +1008,21 @@
         {
             "moduleCode": "",
             "detailCode": "10032",
-            "description": "子账号不存在",
+            "description": "The sub-account doesn't exist",
             "solution": "",
             "updateTime": 1542973906000
         },
         {
             "moduleCode": "",
             "detailCode": "20013",
-            "description": "设备已被别人添加",
+            "description": "he device has been added by another person.",
             "solution": "",
             "updateTime": 1542973817000
         },
         {
             "moduleCode": "",
             "detailCode": "50000",
-            "description": "服务器错误!",
+            "description": "Cloud storage calling service error5000!",
             "solution": "",
             "updateTime": 1542973801000
         },
@@ -1116,7 +1120,7 @@
         {
             "moduleCode": "",
             "detailCode": "20002",
-            "description": "设备不存在",
+            "description": "The device doesn't exist.",
             "solution": "",
             "updateTime": 1542973499000
         },
@@ -1137,42 +1141,42 @@
         {
             "moduleCode": "",
             "detailCode": "20008",
-            "description": "设备响应超时",
+            "description": "Device response timeout.",
             "solution": "",
             "updateTime": 1542973484000
         },
         {
             "moduleCode": "",
             "detailCode": "20032",
-            "description": "该用户下通道不存在",
+            "description": "The channel you selected doesn't exist.",
             "solution": "",
             "updateTime": 1542973481000
         },
         {
             "moduleCode": "",
             "detailCode": "20006",
-            "description": "网络异常",
+            "description": "Device network error.",
             "solution": "",
             "updateTime": 1542973475000
         },
         {
             "moduleCode": "",
             "detailCode": "20014",
-            "description": "deviceSerial不合法!",
+            "description": "Invalid deviceSerial!",
             "solution": "",
             "updateTime": 1542973454000
         },
         {
             "moduleCode": "",
             "detailCode": "20007",
-            "description": "设备不在线",
+            "description": "The device is offline.",
             "solution": "",
             "updateTime": 1542973454000
         },
         {
             "moduleCode": "",
             "detailCode": "20018",
-            "description": "该用户不拥有该设备",
+            "description": "The user has no permission.",
             "solution": "",
             "updateTime": 1542973453000
         },
@@ -1193,14 +1197,14 @@
         {
             "moduleCode": "",
             "detailCode": "20001",
-            "description": "通道不存在!",
+            "description": "The camera doesn't exist.",
             "solution": "",
             "updateTime": 1542973452000
         },
         {
             "moduleCode": "",
             "detailCode": "10017",
-            "description": "appKey不存在",
+            "description": "AppKey doesn't exist",
             "solution": "",
             "updateTime": 1542973451000
         },
@@ -1536,7 +1540,7 @@
         {
             "moduleCode": "",
             "detailCode": "110007",
-            "description": "调用接口总次数达到上限",
+            "description": "Call times reach the upper-limit.",
             "solution": "请升级企业版，获取更高能力",
             "updateTime": 1530935584000
         },
@@ -3251,7 +3255,7 @@
         {
             "moduleCode": "",
             "detailCode": "102003",
-            "description": "设备不在线",
+            "description": "The device is offline.",
             "solution": "参考服务中心排查方法",
             "updateTime": 1522034840000
         },
@@ -3397,8 +3401,8 @@
         },
         {
             "moduleCode": "",
-            "detailCode": "107001",
-            "description": "邀请不存在",
+            "detailCode": "7001",
+            "description": "VTM连接失败",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -3418,8 +3422,8 @@
         },
         {
             "moduleCode": "",
-            "detailCode": "107002",
-            "description": "邀请验证失败",
+            "detailCode": "7002",
+            "description": "VTDU或者回放服务连接失败",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -3439,8 +3443,43 @@
         },
         {
             "moduleCode": "",
-            "detailCode": "107003",
-            "description": "邀请用户不匹配",
+            "detailCode": "7003",
+            "description": "对讲连接失败",
+            "solution": "",
+            "updateTime": 1522034840000
+        },
+        {
+            "moduleCode": "",
+            "detailCode": "7004",
+            "description": "云存储连接失败",
+            "solution": "",
+            "updateTime": 1522034840000
+        },
+        {
+            "moduleCode": "",
+            "detailCode": "7005",
+            "description": "VTDU主动断开连接",
+            "solution": "",
+            "updateTime": 1522034840000
+        },
+        {
+            "moduleCode": "",
+            "detailCode": "7006",
+            "description": "VTM主动断开连接",
+            "solution": "",
+            "updateTime": 1522034840000
+        },
+        {
+            "moduleCode": "",
+            "detailCode": "9001",
+            "description": "无效数据包，包过大",
+            "solution": "",
+            "updateTime": 1522034840000
+        },
+        {
+            "moduleCode": "",
+            "detailCode": "9002",
+            "description": "URL地址不合法",
             "solution": "",
             "updateTime": 1522034840000
         },
