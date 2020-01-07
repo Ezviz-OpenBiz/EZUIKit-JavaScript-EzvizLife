@@ -1341,7 +1341,7 @@
       } else {
         var storage = window.localStorage;
         var errorCode = storage.errorCode;
-        if (!errorCode) {
+        if (!errorCode || JSON.parse(errorCode)[0].version != "20200107" ||JSON.parse(errorCode)[0].envirment != "ezvizlife" ) {
           request(
             playParams.decoderPath + "/js/errorCode.json",
             "get",
