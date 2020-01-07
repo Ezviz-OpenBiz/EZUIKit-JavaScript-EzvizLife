@@ -47,17 +47,16 @@
   };
 
 
-  var Domain = 'https://open.ys7.com';
+  var Domain = 'https://testcnopen.ezvizlife.com';
   var logDomain = 'https://log.ys7.com/statistics.do';
 
-  var jqueryJS = Domain + '/sdk/js/2.0/js/jquery.min.js';
-  var ckplayerJS = Domain + '/sdk/js/2.0/js/ckplayer/ckplayer.js';
-  var ckplayerSWF = Domain + '/sdk/js/2.0/js/ckplayer/ckplayer.swf';
-  var m3u8SWF = Domain + '/sdk/js/2.0/js/ckplayer/m3u8.swf';
-  var flv_js = Domain + '/sdk/js/2.0/js/flv.min.js';
-  var hlsJS = Domain + '/sdk/js/2.0/js/hls.min.js';
-  var mpegJS = Domain + '/sdk/js/2.0/js/jsmpeg.min.js';
-  var wav = Domain + '/sdk/js/2.0/js/wav-audio-encoder.js';
+  var jqueryJS = "https://open.ys7.com" + '/sdk/js/2.0/js/jquery.min.js';
+  var ckplayerJS = "https://open.ys7.com" + '/sdk/js/2.0/js/ckplayer/ckplayer.js';
+  var ckplayerSWF = "https://open.ys7.com" + '/sdk/js/2.0/js/ckplayer/ckplayer.swf';
+  var m3u8SWF = "https://open.ys7.com" + '/sdk/js/2.0/js/ckplayer/m3u8.swf';
+  var flv_js = "https://open.ys7.com" + '/sdk/js/2.0/js/flv.min.js';
+  var hlsJS = "https://open.ys7.com" + '/sdk/js/2.0/js/hls.js';
+  var mpegJS = "https://open.ys7.com" + '/sdk/js/2.0/js/jsmpeg.min.js';
 
 
   // 当前页面是否是https协议
@@ -328,7 +327,7 @@
        * 调试模式配置
        * 可通过dev属性指定API服务域名
        */
-      var domain = "https://open.ys7.com";
+      var domain = Domain;
       if (playParams.env) {
         var environmentParams = playParams.env;
         domain = environmentParams.domain;
@@ -487,7 +486,7 @@
 
   EZUIPlayer.prototype.getRealUrl = function (playParams) {
     var _this = this;
-    var apiDomain = 'https://open.ys7.com';
+    var apiDomain = Domain;
     if (playParams && playParams.env) {
       apiDomain = playParams.env.domain;
     }
@@ -500,79 +499,30 @@
         if (!/^ezopen:\/\//.test(ezopenURL)) { // JSDecoder ws协议播放
           resolve(ezopenURL);
         } else {
-          var getPlayTokenST = new Date().getTime();
-          var nodeUrl = apiDomain + "/jssdk/ezopen/getStreamToken?accessToken=" + playParams.accessToken + '&num=10&type=' + (playParams.url.indexOf('live') !== -1 ? 'live' : 'playback');
-          var nodeSuccess = function (data) {
-            if (data.retcode === 0) {
-              realUrl = realUrl + data.data.params + '&ssn=' + data.data.tokens[0];
-              // _this.opt.currentSource = realUrl;
-              ezuikitDclog({
-                systemName: PERFORMANCE_EZUIKIT,
-                bn: 3,
-                browser: JSON.stringify(getBrowserInfo()),
-                duration: new Date().getTime() - getPlayTokenST,
-                rt: 200,
-              })
-              resolve(realUrl);
-            } else {
-              // 将错误信息捕获到用户自定义错误回调中
-              if (playParams && playParams.handleError) {
-                playParams.handleError(data);
-              }
-              // 错误信息显示在状态中
-              if(data.msg){
-                _this.loadingSet(0,{text:data.msg,color:'red'});
-              }
-              ezuikitDclog({
-                systemName: PERFORMANCE_EZUIKIT,
-                bn: 3,
-                browser: JSON.stringify(getBrowserInfo()),
-                duration: new Date().getTime() - getPlayTokenST,
-                rt: data.retcode,
-                msg: data.msg,
-              })
-              resolve(JSON.stringify(data));
-              throw new Error('获取播放token失败');
-            }
-          }
-          var nodeError = function (error) {
-            // 将错误信息捕获到用户自定义错误回调中
-            if (playParams && playParams.handleError) {
-              playParams.handleError(error);
-            }
-            ezuikitDclog({
-              systemName: PERFORMANCE_EZUIKIT,
-              bn: 3,
-              browser: JSON.stringify(getBrowserInfo()),
-              duration: new Date().getTime() - getPlayTokenST,
-              rt: 500,
-              msg: '获取取流token网络错误',
-            })
-            resolve(JSON.stringify(error))
-            throw new Error('获取播放token失败', 'error');
-          }
           // 向API请求真实地址
           var apiUrl = apiDomain + "/api/lapp/live/url/ezopen";
           var apiSuccess = function (data) {
             if (data.code == 200 || data.retcode == 0) {
-              realUrl += data.data;
+              realUrl += data.data.url;
+              var streamToken = data.data.token;
               /**参数容错处理  start*/
-              if (data.data.indexOf('playback') !== -1) { //回放
+              if (data.data.url.indexOf('playback') !== -1) { //回放
                 // 兼容各种时间格式
-                if (!getQueryString('begin', data.data)) {
+                if (!getQueryString('begin', data.data.url)) {
                   var defaultDate = new Date();
                   realUrl = realUrl + '&begin=' + defaultDate.Format('yyyyMMdd') + 'T000000Z';
                 } else {
-                  realUrl = realUrl.replace('&begin=' + getQueryString('begin', data.data), '&begin=' + formatRecTime(getQueryString('begin', data.data), '000000'))
+                  realUrl = realUrl.replace('&begin=' + getQueryString('begin', data.data.url), '&begin=' + formatRecTime(getQueryString('begin', data.data.url), '000000'))
                 }
-                if (!getQueryString('end', data.data)) {
+                if (!getQueryString('end', data.data.url)) {
                   var defaultDate = new Date();
                   realUrl = realUrl + '&end=' + defaultDate.Format('yyyyMMdd') + 'T235959Z';
                 } else {
-                  realUrl = realUrl.replace('&end=' + getQueryString('end', data.data), '&end=' + formatRecTime(getQueryString('end', data.data), '235959'))
+                  realUrl = realUrl.replace('&end=' + getQueryString('end', data.data.url), '&end=' + formatRecTime(getQueryString('end', data.data.url), '235959'))
                 }
+                console.log("realUrl",realUrl)
                 // api错误处理
-                if (!getQueryString('stream', data.data)) {
+                if (!getQueryString('stream', data.data.url)) {
                   realUrl = realUrl.replace('stream', '&stream');
                 }
                 if(playParams.url.indexOf('.cloud')!== -1){
@@ -598,7 +548,10 @@
                         recSliceArr = recSliceArrFun(data.data);
                         var recSliceArrJSON = JSON.stringify(recSliceArr).replace('\\','');
                         realUrl += ('&recSlice=' + recSliceArrJSON.replace('\\',''));
-                        request(nodeUrl, 'GET', '', '', nodeSuccess, nodeError);
+                        // request(nodeUrl, 'POST', apiParams, '', nodeSuccess, nodeError);
+                        console.log("data.datatoken",streamToken);
+                        realUrl = realUrl +'&auth=1&cln=100' + '&ssn=' + streamToken;
+                        resolve(realUrl);
                       } else {
                         _this.log('未找到录像片段', 'error');
                         _this.loadingSet(0,{text:'获取设备播放地址'})
@@ -619,8 +572,8 @@
                           downloadPathArr.push({
                             downloadPath: item.downloadPath,
                             ownerId: item.ownerId,
-                            iStorageVersion: item.iStorageVersion,
-                            videoType: item.videoType,
+                            iStorageVersion: item.iStorageVersion || 1,
+                            videoType: item.videoType || 2,
                             iPlaySpeed: 0,
                             startTime: item.startTime,
                             endTime: item.endTime
@@ -638,12 +591,16 @@
                   request(recSliceUrl, 'POST', recSliceParams, '', recAPISuccess, recAPIError);
                   
                 } else {// 本地回放
-                  request(nodeUrl, 'GET', '', '', nodeSuccess, nodeError);
+                  //request(nodeUrl, 'POST', apiParams, '', nodeSuccess, nodeError);
+                  realUrl = realUrl +'&auth=1&cln=100' + '&ssn=' + data.data.token;
+                  resolve(realUrl);
                 }
 
               } else {
                 // 预览直接获取回放片段
-                request(nodeUrl, 'GET', '', '', nodeSuccess, nodeError);
+                //request(nodeUrl, 'POST', apiParams,'', nodeSuccess, nodeError);
+                realUrl = realUrl +'&auth=1&biz=4&cln=100' + '&ssn=' + data.data.token;
+                resolve(realUrl);
               }
               getPlayTokenST = new Date().getTime();
               // 执行一次API服务请求上报
@@ -839,13 +796,14 @@
     }
     function reRormatRecTime(time){
       var year = time.slice(0,4);
-      var month = time.slice(4,6);
+      var month = time.slice(4,6) - 1;
       var day = time.slice(6,8);
       var hour = time.slice(9,11);
       var minute = time.slice(11,13);
       var second = time.slice(13,15);
       var date = year + '-' + month + '-' + day + ' ' + hour + ':' + minute +':' + second;
-      return new Date(date.replace(/-/g,'/')).getTime();
+      // return new Date(date.replace(/-/g,'/')).getTime();
+      return Date.UTC(year,month,day,hour,minute,second);
     }
   };
 
