@@ -2,7 +2,12 @@
     "data": [
         {
             "version": "20200107",
-            "envirment": "ezvizlife"
+            "envirment": "ezvizlife",
+            "moduleCode": "",
+            "detailCode": "",
+            "description": "",
+            "solution": "",
+            "updateTime": 1559564188000
         },
         {
             "moduleCode": "",
@@ -119,7 +124,7 @@
         {
             "moduleCode": "",
             "detailCode": "5558",
-            "description": "The start time not available",
+            "description": "The start time is not available",
             "solution": "",
             "updateTime": 1554987121000
         },
