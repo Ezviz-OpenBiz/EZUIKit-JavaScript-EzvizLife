@@ -339,7 +339,6 @@
       /** 根据播放参数获取真实播放地址 */
       this.loadingStart();
       playStartTime = new Date().getTime();
-
       var getRealUrl = this.getRealUrl(playParams);
       /**是否自动播放 */
       if (isPromise(getRealUrl)) {
@@ -497,7 +496,11 @@
       var getRealUrlPromise = function (resolve, reject, ezopenURL) {
         var realUrl = '';
         if (!/^ezopen:\/\//.test(ezopenURL)) { // JSDecoder ws协议播放
-          resolve(ezopenURL);
+          if(/^(ws|wss:)\/\//.test(ezopenURL)){
+            resolve(ezopenURL);
+          }else {
+            resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
+          }
         } else {
           // 向API请求真实地址
           var apiUrl = apiDomain + "/api/lapp/live/url/ezopen";
@@ -1236,7 +1239,7 @@
             });
           }, function (err) {
             _this.log('播放失败' + JSON.stringify(err), 'error');
-            var errorInfo = JSON.parse(_this.errorCode).find(function (item) { return item.detailCode.substr(-4) == err.oError.errorCode });
+            var errorInfo = JSON.parse(_this.errorCode).find(function (item) {return item.detailCode.substr(-4) == err.oError.errorCode });
             ezuikitDclog({
               systemName: PERFORMANCE_EZUIKIT,
               bn: 2,
