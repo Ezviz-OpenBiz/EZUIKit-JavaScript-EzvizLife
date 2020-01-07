@@ -345,10 +345,10 @@
         getRealUrl.then(function (data) {
           var initDecoder = _this.initDecoder(playParams);
           // 初始化播放器
-          _this.loadingSet(0,{text:'初始化播放器...'});
+          _this.loadingSet(0,{text:'Initialize the player...'});
           if (isPromise(initDecoder) && (playParams.autoplay !== false)) {
             initDecoder.then(function (data) {
-              _this.loadingSet(0,{text:'初始化完成'});
+              _this.loadingSet(0,{text:'Initialization is complete'});
               _this.play({ handleError: playParams.handleError, handleSuccess: playParams.handleSuccess },playParams);
             })
           }
@@ -556,16 +556,16 @@
                         realUrl = realUrl +'&auth=1&cln=100' + '&ssn=' + streamToken;
                         resolve(realUrl);
                       } else {
-                        _this.log('未找到录像片段', 'error');
-                        _this.loadingSet(0,{text:'获取设备播放地址'})
-                        resolve(JSON.stringify({code:-1,msg:"未找到录像片段"}))
-                        // reject('未找到录像片段');
+                        _this.log('Not found video clips', 'error');
+                        _this.loadingSet(0,{text:'Get device live view address'})
+                        resolve(JSON.stringify({code:-1,msg:"Not found video clips"}))
+                        // reject('Not found video clips');
                       }
                     } else {
                       _this.log(data.msg, 'error');
-                      _this.loadingSet(0,{text:'获取设备播放地址'});
-                      resolve(JSON.stringify({code:-1,msg:"未找到录像片段"}))
-                      //reject('未找到录像片段');
+                      _this.loadingSet(0,{text:'Get device live view address'});
+                      resolve(JSON.stringify({code:-1,msg:"Not found video clips"}))
+                      //reject('Not found video clips');
                     }
                     function recSliceArrFun(data){
                       var downloadPathArr = [];
@@ -675,7 +675,7 @@
         return new Promise(function(resolve, reject){return getRealUrlPromise(resolve, reject, ezopenURL)})
       };
       urlList.map(function (item, index) {
-        _this.loadingSet(index,{text:'获取设备播放地址'})
+        _this.loadingSet(index,{text:'Get device live view address'})
         promiseTaskList.push(promiseTaskFun(item));
       });
       var getRealUrlPromiseObj = Promise.all(promiseTaskList)
@@ -684,16 +684,16 @@
           _this.opt.sources = result;
           _this.opt.currentSource = result[0];
           result.forEach(function(item,index){
-            _this.loadingSet(index,{text:'获取播放地址成功'})
+            _this.loadingSet(index,{text:'Get live view Address Success'})
           })
         })
         .catch(function (err) {
-          _this.log("获取真实地址错误" + JSON.stringify(err), 'error')
+          _this.log("Getting real address error" + JSON.stringify(err), 'error')
         })
       return getRealUrlPromiseObj;
     } else {
       if (!this.opt.currentSource) {
-        this.log('未找到合适的播放URL', 'error');
+        this.log('Not found suitable live view URL', 'error');
         return;
       }
       var me = this;
@@ -1174,18 +1174,18 @@
       if (!params || typeof params.index === 'undefined') {
         _this.opt.sources.forEach(function (item, index) {
           if(getQueryString('dev',item)){
-          _this.log("开始播放, 第" + (index+1)+ '路，' + '地址：' + item);
-          _this.loadingSet(index,{text:'准备播放...',color:'#fff'})
+          _this.log("Start playing, channel " + (index+1) + 'address：' + item);
+          _this.loadingSet(index,{text:'Ready to play...',color:'#fff'})
           // 设置秘钥 - 如果地址中包含秘钥参数，播放前配置到JSPlugin对应实例中
           var validateCode = getQueryString('checkCode', item);
           if (validateCode) {
-            _this.log('设置秘钥，视频路数：' + (index + 1) + '验证码：' + validateCode)
+            _this.log('Set the secret key，' + (index + 1) + 'code：' + validateCode)
             _this.jSPlugin.JS_SetSecretKey(index, validateCode);
           }
           var playST = new Date().getTime();
           _this.jSPlugin.JS_Play(getPlayParams(item).websocketConnectUrl, { playURL: getPlayParams(item).websocketStreamingParam }, index).then(function () {
-            _this.log('播放成功，当前播放第' + (index + 1) + '路');
-            _this.loadingSet(index,{text:'播放成功...'});
+            _this.log('Played successfully, currently playing channel ' + (index + 1));
+            _this.loadingSet(index,{text:'Played successfully...'});
             //单次播放日志上报
             ezuikitDclog({
               systemName: PERFORMANCE_EZUIKIT,
@@ -1206,10 +1206,10 @@
             // 默认开启声音
             // 默认开启第一路声音
             if (typeof(audioId) !== "undefined" && audioId === index) {
-              _this.log("默认开启第1路声音");
+              _this.log("Turn on the first sound by default");
               setTimeout(function(){
                 var openSoundRT = _this.jSPlugin.JS_OpenSound(0);
-                openSoundRT === 0 ? _this.log('开启声音成功') : _this.log('开启声音失败','error');
+                openSoundRT === 0 ? _this.log('Turn on the sound successfully') : _this.log('Failed to turn on the sound','error');
               }, 100)
             }
             // 播放成功回调
@@ -1238,7 +1238,7 @@
               Channel: getQueryString('chn',item),
             });
           }, function (err) {
-            _this.log('播放失败' + JSON.stringify(err), 'error');
+            _this.log('play failed' + JSON.stringify(err), 'error');
             var errorInfo = JSON.parse(_this.errorCode).find(function (item) {return item.detailCode.substr(-4) == err.oError.errorCode });
             ezuikitDclog({
               systemName: PERFORMANCE_EZUIKIT,
@@ -1246,9 +1246,9 @@
               browser: JSON.stringify(getBrowserInfo()),
               duration: new Date().getTime() - playStartTime,
               rt: err.oError ? err.oError.errorCode : 500,
-              msg: errorInfo ? errorInfo.description : '播放过程其他错误'
+              msg: errorInfo ? errorInfo.description : 'Other errors during playing'
             })
-            var msg = errorInfo ? errorInfo.description : '播放过程其他错误';
+            var msg = errorInfo ? errorInfo.description : 'Other errors during playing';
             _this.loadingSet(index,{text:msg,color:'red'});
             dclog({
               systemName: PLAY_MAIN,
@@ -1277,16 +1277,16 @@
   };
   EZUIPlayer.prototype.initDecoder = function (playParams) {
     this.opt.id = playParams.id;
-    this.log("初始化解码器---开始");
+    this.log("Initialize the decoder---start");
     var _this = this;
     var initDecoderDurationST = new Date().getTime();
     // DOM id
     function initDecoder(resolve, reject) {
       var jsPluginPath = playParams.decoderPath + '/js/jsPlugin-1.2.0.min.js';
 
-      /** 初始化解码器 */
+      /** Initialize the decoder */
       addJs(jsPluginPath, function () {
-        _this.log("下载解码器完成，开始初始化");
+        _this.log("Download decoder completed, start initialization");
         /* decoder 属性配置 */
         _this.jSPlugin = new JSPlugin({
           szId: playParams.id,
@@ -1302,8 +1302,8 @@
         window.onresize = function () {
           _this.jSPlugin.JS_Resize(playParams.width || 600, playParams.height || 400);
         }
-        _this.log("初始化解码器----完成");
-         // 执行一次初始化解码器服务请求上报
+        _this.log("Initialize the decoder----done");
+         // 执行一次Initialize the decoder服务请求上报
          ezuikitDclog({
           systemName: PERFORMANCE_EZUIKIT,
           bn: 1,
@@ -1369,7 +1369,7 @@
   }
   EZUIPlayer.prototype.stop = function (i) {
     // 执行停止
-    this.log("停止播放" + this.opt.currentSource);
+    this.log("Stop play" + this.opt.currentSource);
     this.opt.autoplay = false;
     if (!!window['CKobject']) {
       //CKobject.getObjectById(this.flashId).destroy();
@@ -1396,23 +1396,23 @@
       var _this = this;
       if (typeof i === "undefined") {
           return this.jSPlugin.JS_Stop(0).then(function () {
-            _this.log("停止播放成功" + _this.opt.currentSource);
+            _this.log("Stop playing successfully" + _this.opt.currentSource);
             console.log("stop success");
           // 额外销毁worker
           _this.jSPlugin.JS_DestroyWorker();
 		      _this.loadingEnd(0);
           //removeChild(0);
           }, function () {
-            _this.log("停止播放失败" + _this.opt.currentSource);
+            _this.log("Stop playing failed" + _this.opt.currentSource);
             console.log("stop failed");
           });
       } else {
         return this.jSPlugin.JS_Stop(i).then(function () {
-          _this.log("第" + i+"路停止播放成功" + _this.opt.currentSource);
+          _this.log("Stop successfully,channel:" +i+'address:'+ _this.opt.currentSource);
           _this.loadingEnd(i);
           console.log("stop success");
         }, function () {
-          _this.log("第" + i+"路停止播放失败" + _this.opt.currentSource);
+          _this.log("Stop Failed,channel:" +i+'address:'+ _this.opt.currentSource);
           _this.loadingEnd(i);
           console.log("stop failed");
         });
@@ -1455,7 +1455,7 @@
   EZUIPlayer.prototype.openSound = function (iWind) {
     if (!!this.jSPlugin) {
       var openSoundRT = this.jSPlugin.JS_OpenSound(iWind || 0);
-      openSoundRT === 0 ? this.log('开启声音成功') : this.log('开启声音失败','error');
+      openSoundRT === 0 ? this.log('Turn on the sound successfully') : this.log('Failed to turn on the sound','error');
       return openSoundRT;
     } else {
       throw new Error("Method  not support");
@@ -1473,7 +1473,7 @@
   EZUIPlayer.prototype.closeSound = function (iWind) {
     if (!!this.jSPlugin) {
       var closeSoundRT = this.jSPlugin.JS_CloseSound(iWind || 0);
-      closeSoundRT === 0 ? this.log('关闭声音成功') : this.log('关闭声音失败','error');
+      closeSoundRT === 0 ? this.log('Turn on the sound successfully') : this.log('Failed to turn on the sound','error');
       return closeSoundRT;
     } else {
       throw new Error("Method  not support");
@@ -1490,7 +1490,7 @@
   // 开始录像
   EZUIPlayer.prototype.startSave = function (iWind, fileName) {
     if (!!this.jSPlugin) {
-      this.log("开始录制录像");
+      this.log("Start recording video");
       return this.jSPlugin.JS_StartSave(iWind, fileName)
     } else {
       throw new Error("Method  not support");
@@ -1500,7 +1500,7 @@
   EZUIPlayer.prototype.stopSave = function (iWind) {
     if (!!this.jSPlugin) {
       return this.jSPlugin.JS_StopSave(iWind);
-      this.log("结束录制录像");
+      this.log("End recording video");
     } else {
       throw new Error("Method  not support");
     }

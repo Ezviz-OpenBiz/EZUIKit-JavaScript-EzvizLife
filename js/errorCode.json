@@ -173,7 +173,7 @@
         {
             "moduleCode": "",
             "detailCode": "399048",
-            "description": "免费版并发数达到上限，请升级企业版使用多并发能力",
+            "description": "The number of concurrency reaches the upper limit",
             "solution": "升级成为企业版套餐即可取消并发数限制",
             "updateTime": 1553839878000
         },
@@ -299,7 +299,7 @@
         {
             "moduleCode": "",
             "detailCode": "60059",
-            "description": "ezopen地址均不可用",
+            "description": "ezopen address is not available",
             "solution": "",
             "updateTime": 1548395350000
         },
@@ -369,7 +369,7 @@
         {
             "moduleCode": "",
             "detailCode": "1053445",
-            "description": "该时间段没有录像片段",
+            "description": "No video clips during this time period",
             "solution": "",
             "updateTime": 1546935727000
         },
@@ -593,7 +593,7 @@
         {
             "moduleCode": "",
             "detailCode": "1",
-            "description": "设备返回其他错误",
+            "description": "Device returned other errors",
             "solution": "",
             "updateTime": 1543459921000
         },
@@ -705,7 +705,7 @@
         {
             "moduleCode": "",
             "detailCode": "1052677",
-            "description": "获取本地录像失败",
+            "description": "Failed to get local recording",
             "solution": "",
             "updateTime": 1543207604000
         },
@@ -733,7 +733,7 @@
         {
             "moduleCode": "",
             "detailCode": "1052678",
-            "description": "获取本地录像失败",
+            "description": "Failed to get local recording",
             "solution": "",
             "updateTime": 1543132218000
         },
@@ -775,7 +775,7 @@
         {
             "moduleCode": "",
             "detailCode": "2003",
-            "description": "设备不在线",
+            "description": "Device is offline",
             "solution": "",
             "updateTime": 1543051046000
         },
@@ -915,7 +915,7 @@
         {
             "moduleCode": "",
             "detailCode": "5",
-            "description": "设备返回其他错误",
+            "description": "Device returned other errors",
             "solution": "",
             "updateTime": 1542977828000
         },
@@ -985,7 +985,7 @@
         {
             "moduleCode": "",
             "detailCode": "1053825",
-            "description": "获取本地录像失败",
+            "description": "Failed to get local recording",
             "solution": "",
             "updateTime": 1542974692000
         },
@@ -1048,7 +1048,7 @@
         {
             "moduleCode": "",
             "detailCode": "4",
-            "description": "设备返回其他错误",
+            "description": "Device returned other errors",
             "solution": "",
             "updateTime": 1542973755000
         },
@@ -2434,7 +2434,7 @@
         {
             "moduleCode": "",
             "detailCode": "395404",
-            "description": "设备不在线",
+            "description": "Device is offline",
             "solution": "检查设备网络；重启设备接入萤石云",
             "updateTime": 1522034841000
         },
@@ -2511,7 +2511,7 @@
         {
             "moduleCode": "",
             "detailCode": "395452",
-            "description": "设备链接流媒体服务器失败 ",
+            "description": "Device connect stream service Failured",
             "solution": "检查设备网络，重启设备，刷新重试",
             "updateTime": 1522034841000
         },
@@ -3407,7 +3407,7 @@
         {
             "moduleCode": "",
             "detailCode": "7001",
-            "description": "VTM连接失败",
+            "description": "VTM connection failed",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -3428,7 +3428,7 @@
         {
             "moduleCode": "",
             "detailCode": "7002",
-            "description": "VTDU或者回放服务连接失败",
+            "description": "VTDU or playback service connection failed",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -3463,28 +3463,28 @@
         {
             "moduleCode": "",
             "detailCode": "7005",
-            "description": "VTDU主动断开连接",
+            "description": "VTDU actively disconnects",
             "solution": "",
             "updateTime": 1522034840000
         },
         {
             "moduleCode": "",
             "detailCode": "7006",
-            "description": "VTM主动断开连接",
+            "description": "VTM actively disconnects",
             "solution": "",
             "updateTime": 1522034840000
         },
         {
             "moduleCode": "",
             "detailCode": "9001",
-            "description": "无效数据包，包过大",
+            "description": "Invalid data packet, the packet is too large",
             "solution": "",
             "updateTime": 1522034840000
         },
         {
             "moduleCode": "",
             "detailCode": "9002",
-            "description": "URL地址不合法",
+            "description": "URL address is invalid",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -3526,14 +3526,14 @@
         {
             "moduleCode": "",
             "detailCode": "7005",
-            "description": "VTDU主动断开连接",
+            "description": "VTDU actively disconnects",
             "solution": "",
             "updateTime": 1522034840000
         },
         {
             "moduleCode": "",
             "detailCode": "107005",
-            "description": "VTDU主动断开连接",
+            "description": "VTDU actively disconnects",
             "solution": "",
             "updateTime": 1522034840000
         },
@@ -4198,7 +4198,7 @@
         {
             "moduleCode": "",
             "detailCode": "120007",
-            "description": "设备不在线",
+            "description": "Device is offline",
             "solution": "参考服务中心排查方法",
             "updateTime": 1522034840000
         },
@@ -4758,7 +4758,7 @@
         {
             "moduleCode": "",
             "detailCode": "361012",
-            "description": "设备不在线",
+            "description": "Device is offline",
             "solution": "",
             "updateTime": 1522034840000
         },

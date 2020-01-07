@@ -41,16 +41,15 @@
   <script src="../ezuikit.js"></script>
   <!-- <script src="../js/jsPlugin-1.2.0.js"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.min.js"></script> -->
-  <div class="hint">demo页面仅为代码示例无法直接运行，需要部署到服务器上才可以播放。另外监控模式与多窗口模式对浏览器版本有要求：Chrome: 55+ Firefox: V55+。</div>
+  <div class="hint">The demo page is only a code example and cannot be run directly. It needs to be deployed to the server before it can be played. In addition, the monitoring mode and multi-window mode require the browser version: Chrome: 55+ Firefox: V55 +.</div>
   <script src="../js/jquery.min.js"></script>
-  <h2>预览，回放 多窗口模式示例：</h2>
+  <h2>live view, playback Example of multi-window mode：</h2>
   <!-- <p>ezopen地址用逗号分隔</p> -->
-  <textarea id="url" placeholder="这里输入ezopen地址"></textarea>
-  <textarea id="accessToken" placeholder="这里输入accessToken"></textarea>
+  <textarea id="url" placeholder="Please input Ezopen url">ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live</textarea>
+  <textarea id="accessToken" placeholder="Please input AccessToken">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
   <div class="btn-container">
-    <button id="init">开始初始化</button>
-    <button id="start">初始化播放</button>
-    <button id="stop">全部结束</button>
+    <button id="init">Initialization</button>
+    <button id="stop">End</button>
   </div>
   <div id="playWind" style="width: 1200px; height: 800px;">
   </div>
@@ -67,7 +66,7 @@
         decoderPath: '../',
         width: 1200,
         height: 800,
-        splitBasis: 2, // 1*1 2*2 3*3 4*4
+        splitBasis: 3, // 1*1 2*2 3*3 4*4
       });
       // 这里是打印日志，本例抛出到播放页面
       decoder.on('log', log);

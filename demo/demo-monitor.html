@@ -41,22 +41,23 @@
   <script src="../ezuikit.js"></script>
   <!-- <script src="../js/jsPlugin-1.2.0.js"></script> -->
   <script src="../js/jquery.min.js"></script>
-  <div class="hint">demo页面仅为代码示例无法直接运行，需要部署到服务器上才可以播放。另外监控模式与多窗口模式对浏览器版本有要求：Chrome: 55+ Firefox: V55+。</div>
-  <h2>预览，回放功能示例：</h2>
-  <textarea id="url" placeholder="这里输入ezopen地址"></textarea>
-  <textarea id="accessToken" placeholder="这里输入accessToken"></textarea>
+  <div class="hint">The demo page is only a code example and cannot be run directly. It needs to be deployed to the server before it can be played. In addition, the monitoring mode and multi-window mode require the browser version: Chrome: 55+ Firefox: V55 +.</div>
+  <h2>live view and playback function examples：</h2>
+  <textarea id="url" placeholder="Please input Ezopen url">ezopen://ZGYNUC@open.ezviz.com/D22133541/1.cloud.rec?begin=20200106200000&end=20200106235958</textarea>
+  <textarea id="accessToken" placeholder="Please input AccessToken">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
   <div class="btn-container">
-    <button id="init">初始化播放</button>
-    <button id="stop">结束</button>
-    <button id="getOSDTime">获取OSD时间</button>
-    <button id="openSound">打开声音（默认已经开启）</button>
-    <button id="closeSound">关闭声音</button>
-    <button id="capturePicture">视频截图</button>
-    <button id="startSave">开始录像</button>
-    <button id="stopSave">停止录像</button>
-    <button id="enableZoom">开启电子放大</button>
-    <button id="closeZoom">关闭电子放大</button>
-    <span>录制功能不支持加密视频，且录制的文件需要<a href="https://service.ys7.com/downloadInfoSite/admin" target="_blank">下载海康播放器播放</a></span>
+    <button id="init">Initialization</button>
+    <button id="stop">End</button>
+    <button id="getOSDTime"> Get OSD time</button>
+    <button id="openSound">Turn on the sound（default）</button>
+    <button id="closeSound">Turn off the sound</button>
+    <button id="capturePicture">Screenshot</button>
+    <button id="startSave">Start recording</button>
+    <button id="stopSave">End recording</button>
+    <button id="enableZoom">Turn on electronic zoom</button>
+    <button id="closeZoom">Turn off electronic zoom</button>
+    <button id="fullScreen">Full screen</button>
+    <!-- <span>录制功能不支持加密视频，且录制的文件需要<a href="https://service.ys7.com/downloadInfoSite/admin" target="_blank">下载海康播放器播放</a></span> -->
 
   </div>
   <div id="playWind" style="width: 600px; height: 400px;">
@@ -64,12 +65,12 @@
   <script>
     $("#init").click(function () {
       function handleError(e){
-          console.log('捕获到错误',e)
+          console.log('catch error',e)
          // log(JSON.stringify(e),'error');
           //alert(e)
       }
       function handleSuccess(){
-        console.log("播放成功回调函数，此处可执行播放成功后续动作");
+        console.log("play success");
       }
       var url = $('#url').val().trim();
       var accessToken = $('#accessToken').val().trim();
@@ -109,13 +110,14 @@
         /*停止播放方法2 - promise模式*/
         var stopPromise = decoder.stop();
         stopPromise.then(function(){
-          console.log("关闭成功，用户执行关闭成功后的操作");
+          console.log("close success");
         })
       })
       $("#getOSDTime").click(function () {
         var getOSDTimePromise = decoder.getOSDTime();
         getOSDTimePromise.then(function(data){
           console.log("getOSDTime success",data)
+          log('get OSDTime success: ' + data);
         })
       })
       $("#openSound").click(function () {
@@ -130,7 +132,7 @@
          /*截图方法2*/
         var capturePicturePromise = decoder.capturePicture(0,'default');
         capturePicturePromise.then(function(data){
-          console.log("截图成功，用户执行关闭成功后的操作",data);
+          console.log("Screenshot success",data);
         })
       })
       $("#startSave").click(function () {
@@ -164,6 +166,9 @@
       })
       $("#closeZoom").click(function () {
         decoder.closeZoom();
+      })
+      $("#fullScreen").click(function () {
+        decoder.fullScreen();
       })
     })
   </script>
