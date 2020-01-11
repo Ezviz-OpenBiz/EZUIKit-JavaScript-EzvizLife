@@ -1,7 +1,7 @@
 {
     "data": [
         {
-            "version": "20200107",
+            "version": "20200111",
             "envirment": "ezvizlife",
             "moduleCode": "",
             "detailCode": "",
@@ -26,7 +26,7 @@
         {
             "moduleCode": "",
             "detailCode": "1052674",
-            "description": "获取本地录像失败",
+            "description": "Failed to get local recording",
             "solution": "",
             "updateTime": 1558579653000
         },
@@ -47,7 +47,7 @@
         {
             "moduleCode": "",
             "detailCode": "10052",
-            "description": "余额不足",
+            "description": "Insufficient balance",
             "solution": "",
             "updateTime": 1557121463000
         },
@@ -110,7 +110,7 @@
         {
             "moduleCode": "",
             "detailCode": "395416",
-            "description": "设备达到最大连接数，无法建立连接",
+            "description": "Device reached the maximum number of connections",
             "solution": "请升级设备固件版本",
             "updateTime": 1555394722000
         },
@@ -145,14 +145,14 @@
         {
             "moduleCode": "",
             "detailCode": "1012",
-            "description": "重置失败",
+            "description": "Reset failed",
             "solution": "",
             "updateTime": 1554645841000
         },
         {
             "moduleCode": "",
             "detailCode": "1043",
-            "description": "重置失败",
+            "description": "Reset failed",
             "solution": "",
             "updateTime": 1554645834000
         },
@@ -2420,7 +2420,7 @@
         {
             "moduleCode": "",
             "detailCode": "395402",
-            "description": "回放找不到录像文件",
+            "description": "Not found video clips",
             "solution": "检查是否有存储卡并且接触良好",
             "updateTime": 1522034841000
         },
@@ -2532,28 +2532,28 @@
         {
             "moduleCode": "",
             "detailCode": "395503",
-            "description": "vtm返回分配vtdu失败",
+            "description": "vtm returns allocation vtdu lost",
             "solution": "服务器负载达到上限，请稍后重试",
             "updateTime": 1522034841000
         },
         {
             "moduleCode": "",
             "detailCode": "395544",
-            "description": "设备返回无视频源 ",
+            "description": "Device returns no video source",
             "solution": "设备是否接触良好；",
             "updateTime": 1522034841000
         },
         {
             "moduleCode": "",
             "detailCode": "395545",
-            "description": "视频分享时间已经结束",
+            "description": "Video sharing time has ended",
             "solution": "",
             "updateTime": 1522034841000
         },
         {
             "moduleCode": "",
             "detailCode": "395546",
-            "description": "vtdu返回达到取流并发路数限制",
+            "description": "vtdu returns to reach the limit of the number",
             "solution": "请升级为企业版，放开并发限制",
             "updateTime": 1522034841000
         },

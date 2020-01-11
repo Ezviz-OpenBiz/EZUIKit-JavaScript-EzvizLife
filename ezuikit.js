@@ -502,6 +502,10 @@
             resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
           }
         } else {
+          var ezopenReg = /ezopen:\/\/[a-z_A-Z.@]+\/[a-zA-Z0-9]{9}\/[0-9]{1}(\.[a-z]*)+(\?[a-zA-z0-9&=]+)*$/i;
+          if(!ezopenReg.test(ezopenURL)){
+            resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
+          }
           // 向API请求真实地址
           var apiUrl = apiDomain + "/api/lapp/live/url/ezopen";
           var apiSuccess = function (data) {
@@ -1344,7 +1348,7 @@
       } else {
         var storage = window.localStorage;
         var errorCode = storage.errorCode;
-        if (!errorCode || JSON.parse(errorCode)[0].version != "20200107" ||JSON.parse(errorCode)[0].envirment != "ezvizlife" ) {
+        if (!errorCode || JSON.parse(errorCode)[0].version != "20200111" ||JSON.parse(errorCode)[0].envirment != "ezvizlife" ) {
           request(
             playParams.decoderPath + "/js/errorCode.json",
             "get",

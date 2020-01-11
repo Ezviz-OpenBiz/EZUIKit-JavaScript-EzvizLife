@@ -72,13 +72,16 @@
   </div>
   <script>
     $("#init").click(function () {
+      $("#init").attr('disabled',true);
       function handleError(e){
-          console.log('catch error',e)
+          console.log('catch error',e);
+          $("#init").attr('disabled',false);
          // log(JSON.stringify(e),'error');
           //alert(e)
       }
       function handleSuccess(){
         console.log("play success");
+        $("#init").attr('disabled',true);
       }
       var url = $('#url').val().trim();
       var accessToken = $('#accessToken').val().trim();
@@ -92,6 +95,11 @@
         height: 400,
         handleError: handleError,
         handleSuccess: handleSuccess,
+        env:{
+          domain: "https://testcnopen.ezvizlife.com",
+          wsUrl:"wss://testcnjsdecoder.ezvizlife.com:443",
+
+        }
       });
       // 这里是打印日志，本例抛出到播放页面
       decoder.on('log', log);
@@ -119,6 +127,7 @@
         var stopPromise = decoder.stop();
         stopPromise.then(function(){
           console.log("close success");
+          $("#init").attr('disabled',false);
         })
       })
       $("#getOSDTime").click(function () {
