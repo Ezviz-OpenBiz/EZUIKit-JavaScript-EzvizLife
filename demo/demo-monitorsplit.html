@@ -46,7 +46,7 @@
   <h2>live view, playback Example of multi-window mode：</h2>
   <!-- <p>ezopen地址用逗号分隔</p> -->
   <textarea id="url" placeholder="Please input Ezopen url">ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live,ezopen://ZGYNUC@open.ezviz.com/D22133541/1.live</textarea>
-  <textarea id="accessToken" placeholder="Please input AccessToken">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
+  <textarea id="accessToken" placeholder="Please input AccessToken, It is recommended use restricted permission token in production environments">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
   <div class="btn-container">
     <button id="init">Initialization</button>
     <button id="stop">End</button>
@@ -66,7 +66,7 @@
         decoderPath: '../',
         width: 1200,
         height: 800,
-        splitBasis: 3, // 1*1 2*2 3*3 4*4
+        splitBasis: 4, // 1*1 2*2 3*3 4*4
       });
       // 这里是打印日志，本例抛出到播放页面
       decoder.on('log', log);
