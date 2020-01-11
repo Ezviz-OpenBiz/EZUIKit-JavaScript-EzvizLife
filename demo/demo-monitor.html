@@ -32,6 +32,11 @@
       color: red;
       margin: 5px;
     }
+    .encript-hint {
+      font-size: 14px;
+      margin: 20px 10px;
+      color: rgba(0, 0, 0, 0.65);
+    }
   </style>
 </head>
 <script>
@@ -45,6 +50,9 @@
   <h2>live view and playback function examples：</h2>
   <textarea id="url" placeholder="Please input Ezopen url">ezopen://ZGYNUC@open.ezviz.com/D22133541/1.cloud.rec?begin=20200106200000&end=20200106235958</textarea>
   <textarea id="accessToken" placeholder="Please input AccessToken">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
+  <div class="encript-hint">
+    <b>Important:</b>If play fails, the device may be encrypted, please use the device ’s decryption interface to decrypt it, or add the device ’s verification code to the ezopen address. For example ezopen://VerificationCode@open.ys7.com/203751922/1.rec
+  </div>
   <div class="btn-container">
     <button id="init">Initialization</button>
     <button id="stop">End</button>
