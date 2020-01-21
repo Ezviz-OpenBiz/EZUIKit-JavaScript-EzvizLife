@@ -48,10 +48,10 @@
   <script src="../js/jquery.min.js"></script>
   <div class="hint">The demo page is only a code example and cannot be run directly. It needs to be deployed to the server before it can be played. In addition, the monitoring mode and multi-window mode require the browser version: Chrome: 55+ Firefox: V55 +.</div>
   <h2>live view and playback function examples：</h2>
-  <textarea id="url" placeholder="Please input Ezopen url">ezopen://ZGYNUC@open.ezviz.com/D22133541/1.cloud.rec?begin=20200106200000&end=20200106235958</textarea>
-  <textarea id="accessToken" placeholder="Please input AccessToken, It is recommended use restricted permission token in production environments">at.0sx34ht9cs87nvea8otmyqrtci4slpri-7hygia2zdt-12690iy-co1ysvxom</textarea>
+  <textarea id="url" placeholder="Please input Ezopen url"></textarea>
+  <textarea id="accessToken" placeholder="Please input AccessToken, It is recommended use restricted permission token in production environments"></textarea>
   <div class="encript-hint">
-    <b>Important:</b>If play fails, the device may be encrypted, please use the device ’s decryption interface to decrypt it, or add the device ’s verification code to the ezopen address. For example ezopen://VerificationCode@open.ys7.com/203751922/1.rec
+    <b>Important:</b>If play fails, the device may be encrypted, please use the device's decryption interface to decrypt it, or add the device's verification code to the ezopen address. For example ezopen://VerificationCode@open.ys7.com/203751922/1.rec
   </div>
   <div class="btn-container">
     <button id="init">Initialization</button>
@@ -64,7 +64,7 @@
     <button id="stopSave">End recording</button>
     <button id="enableZoom">Turn on electronic zoom</button>
     <button id="closeZoom">Turn off electronic zoom</button>
-    <button id="fullScreen">Full screen</button>
+    <button id="fullScreen" disabled>Full screen</button>
     <!-- <span>录制功能不支持加密视频，且录制的文件需要<a href="https://service.ys7.com/downloadInfoSite/admin" target="_blank">下载海康播放器播放</a></span> -->
 
   </div>
@@ -76,12 +76,14 @@
       function handleError(e){
           console.log('catch error',e);
           $("#init").attr('disabled',false);
+          $("#fullScreen").attr('disabled',true);
          // log(JSON.stringify(e),'error');
           //alert(e)
       }
       function handleSuccess(){
         console.log("play success");
         $("#init").attr('disabled',true);
+        $("#fullScreen").attr('disabled',false);
       }
       var url = $('#url').val().trim();
       var accessToken = $('#accessToken').val().trim();
@@ -96,9 +98,7 @@
         handleError: handleError,
         handleSuccess: handleSuccess,
         env:{
-          domain: "https://testcnopen.ezvizlife.com",
-          wsUrl:"wss://testcnjsdecoder.ezvizlife.com:443",
-
+          domain: "https://isgpopen.ezvizlife.com"
         }
       });
       // 这里是打印日志，本例抛出到播放页面
@@ -128,6 +128,7 @@
         stopPromise.then(function(){
           console.log("close success");
           $("#init").attr('disabled',false);
+          $("#fullScreen").attr('disabled',true);
         })
       })
       $("#getOSDTime").click(function () {
