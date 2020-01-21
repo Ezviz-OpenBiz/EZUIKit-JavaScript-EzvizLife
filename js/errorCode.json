@@ -2448,7 +2448,7 @@
         {
             "moduleCode": "",
             "detailCode": "395406",
-            "description": "token失效",
+            "description": "token failure",
             "solution": "刷新重试或者重启设备",
             "updateTime": 1522034841000
         },
@@ -2476,14 +2476,14 @@
         {
             "moduleCode": "",
             "detailCode": "395411",
-            "description": "token无权限",
+            "description": "token No Access",
             "solution": "刷新重试",
             "updateTime": 1522034841000
         },
         {
             "moduleCode": "",
             "detailCode": "395412",
-            "description": "session不存在 ",
+            "description": "session not exist",
             "solution": "",
             "updateTime": 1522034841000
         },

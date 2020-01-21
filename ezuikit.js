@@ -1415,10 +1415,12 @@
           _this.log("Stop successfully,channel:" +i+'address:'+ _this.opt.currentSource);
           _this.loadingEnd(i);
           console.log("stop success");
+          return 1;
         }, function () {
           _this.log("Stop Failed,channel:" +i+'address:'+ _this.opt.currentSource);
           _this.loadingEnd(i);
           console.log("stop failed");
+          return 0;
         });
         // 额外销毁worker - 多窗口暂不销毁
         // this.jSPlugin.JS_DestroyWorker();
