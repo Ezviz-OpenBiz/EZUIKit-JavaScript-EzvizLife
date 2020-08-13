@@ -48,9 +48,9 @@ The monitoring address can be obtained from interface: Please turn to HTTP inter
 
 ## Monitoring address：
 #### Address structure (adaptive address fits live view as well)：
-    live-view：ezopen:// [verification code@] {areaDomain}/[deviceSerial]/[channelNo] [.hd].live
+    live-view：ezopen:// [verification code]@open.ezviz.com[deviceSerial]/[channelNo] [.hd].live
 	Address exemple：ezopen://open.ezviz.com/203751922/1.hd.live
-	playback：ezopen:// [verification code@] {areaDomain}/[deviceSerial]/[channelNo] [.hd].rec[?begin= yyyyMMddhhmmss&end= yyyyMMddhhmmss]
+	playback：ezopen:// [verification code]@open.ezviz.com/[deviceSerial]/[channelNo] [.hd].rec[?begin= yyyyMMddhhmmss&end= yyyyMMddhhmmss]
 	Address example：ezopen://open.ezviz.com/203751922/1.rec?begin=20190317000000&begin=20190317235959
 
 When the playback address does not have the time parameter, the default value is 0:00:00 to 23:59:59. The default will also be automatically supplemented. For example, “begin=2019031709” ， system will automatically add to “begin=20190317090000&end=20190317235959”
@@ -135,10 +135,3 @@ The surveillance address scenario requires authentication, so the user needs to 
 **Answer：**Please check whether 80 port is occupied as webs.ese using 80 port at present. Port conflict will lead to failure of service running, if so, you need to shut down 80 port first and then run webs.exe.
 ###### 3.	 Monitoring address playback error, failed to find the playback videos?
 **Answer：**Playback is to take the saved video files from the device to play. At present, there are three ways to storage the videos, (1) local SD card; (2) related NVR; (3) upload to cloud; failing to search the videos means there is no video in this time period.
-###### 4.	How to choose {areaDomain}
-**Answer：**  
-North America  ：https://open.ezviz.com  
-South America  ：https://open.ezviz.com  
-Europe：https://ieuopen.ezviz.com  
-Asian：https://isgpopen.ezviz.com  
-Russia：https://irusopen.ezvizru.com  
