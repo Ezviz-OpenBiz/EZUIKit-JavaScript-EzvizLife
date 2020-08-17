@@ -502,10 +502,10 @@
             resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
           }
         } else {
-          var ezopenReg = /ezopen:\/\/[a-z_A-Z.@]+\/[a-zA-Z0-9]{9}\/[0-9]{1}(\.[a-z]*)+(\?[a-zA-z0-9&=]+)*$/i;
-          if(!ezopenReg.test(ezopenURL)){
-            resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
-          }
+          // var ezopenReg = /ezopen:\/\/[a-z_A-Z.@]+\/[a-zA-Z0-9]{9}\/[0-9]{1}(\.[a-z]*)+(\?[a-zA-z0-9&=]+)*$/i;
+          // if(!ezopenReg.test(ezopenURL)){
+          //   resolve(JSON.stringify({code:-1,msg:"The url is not available"}))
+          // }
           // 向API请求真实地址
           var apiUrl = apiDomain + "/api/lapp/live/url/ezopen";
           var apiSuccess = function (data) {
