@@ -75,6 +75,9 @@ var player = new EZUIPlayer({
       decoderPath: '{location path}',
       width: 600,
       height: 400,
+      env:{
+       domain: "https://isgpopen.ezvizlife.com"
+      }
     });
 //play
         player.play();
@@ -96,31 +99,7 @@ var player = new EZUIPlayer({
 |handleError|null|null|Error callback method to catch errors|
 
 
-# Multi-Window Mode
 
-## Brief Introdution
-Realizing multi-window monitoring (1*1, 2*2, and 3*3) based on the monitoring addresses, better serve the needs of background management.
-
-## Multi-Monitoring address
-The multi-window monitoring addresses (URL) is divided by comma
-	example：
-  ```
-  ezopen://open.ezviz.com/[deviceSerial]/[channelNo].live,ezopen://open.ezviz.com/[deviceSerial]/[channelNo].live,ezopen://open.ezviz.com/[deviceSerial]/[channelNo].live,ezopen://open.ezviz.com/[deviceSerial]/[channelNo].live
-```
-## Code example——demo-monitorsplit.html
-```Javascript
-//Set window dividend parameters under monitoring mode (1*1, 2*2, 3*3)
-var player = new EZUIPlayer({
-    id: 'myPlayer',
-    url: {url0},{url1},{url2},{url3}, //Separate the addresses by comma
-    autoplay: true,
-    accessToken: "at.8o2k6dbpcvtr13reaa96hbnya6*************c",
-    decoderPath: '{location path}',
-    width: 1200, // Width & Height are seize of the container, divided equally by the window
-    height: 800,
-    splitBasis: 2 //Set window dividend parameters
-  });
-```
 ## Configuration Introduction
 As monitoring addresses have relatively high requirements for the browser’s
 performance, multi-window playing will easily reach the bottleneck of the browser’s capability. Following is the test results for reference:
