@@ -78,6 +78,23 @@ var player = new EZUIPlayer({
     });
 
 ```
+## Method
+
+  - Start Play
+
+    `player.play()`
+  - Stop Play
+
+    `player.stop()`
+  - Open Sound
+
+    `player.openSound()`
+  - Close Sound
+
+    `player.openSound()` 
+
+
+    See the demo/demo-monitor.html for more details
 ## Configuration Introduction
 |Items|Example|Default value|Instrument|
 |:---|:---:|:---|:---|
