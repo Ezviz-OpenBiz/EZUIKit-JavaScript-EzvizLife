@@ -76,10 +76,7 @@ var player = new EZUIPlayer({
       width: 600,
       height: 400,
     });
-//play
-        player.play();
-//stop
-        player.stop();
+
 ```
 ## Configuration Introduction
 |Items|Example|Default value|Instrument|
