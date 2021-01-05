@@ -1,5 +1,8 @@
 ﻿"use strict";
-
+ //顶点着色器
+//attribute修饰符用于声明由浏览器（javascript）传输给顶点着色器的变量值；
+// vertexPos即我们定义的顶点坐标；
+// gl_Position是一个内建的传出变量。
 var vertexYUVShader = [
     'attribute vec4 vertexPos;',
     'attribute vec2 texturePos;',
@@ -11,7 +14,7 @@ var vertexYUVShader = [
         'textureCoord = texturePos;',
     '}'
     ].join('\n');
-
+    //像素着色器(yuv->rgb)
 var fragmentYUVShader = [
     'precision highp float;',
     'varying highp vec2 textureCoord;',
@@ -84,7 +87,7 @@ var fragmentYUVShader = [
         
         var gl = this.contextGL;
         
-        var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+        var vertexShader = gl.createShader(gl.VERTEX_SHADER); //创建定点着色器
         gl.shaderSource(vertexShader, vertexShaderScript);
         gl.compileShader(vertexShader);
         if(!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
@@ -134,6 +137,24 @@ var fragmentYUVShader = [
     };
 
     /**
+     * 创建纹理
+     */
+    RenderManager.prototype.initTexture = function() {
+
+        var gl = this.contextGL;
+
+        var textureRef = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, textureRef);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.bindTexture(gl.TEXTURE_2D, null);
+
+        return textureRef;
+    };
+
+    /**
      * 初始化YUV纹理
      */
     RenderManager.prototype.initTextures = function() {
@@ -162,30 +183,12 @@ var fragmentYUVShader = [
     };
 
     /**
-     * 创建纹理
-     */
-    RenderManager.prototype.initTexture = function() {
-        
-        var gl = this.contextGL;
-
-        var textureRef = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, textureRef);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        gl.bindTexture(gl.TEXTURE_2D, null);
-
-        return textureRef;
-    };
-
-    /**
      * 显示帧数据
      * @param nWidth    宽度
      * @param nHeight   高度
      * @param nHeight   帧数据
      */
-    RenderManager.prototype.SR_DisplayFrameData = function(nWidth, nHeight, pData) {
+    RenderManager.prototype.SR_DisplayFrameData = function(nWidth, nHeight, pData,dWidth,dHeight) {
 
         if(nWidth <= 0 || nHeight <= 0)
         {
@@ -214,7 +217,7 @@ var fragmentYUVShader = [
 
         gl.viewport(0, 0, nWindowWidth, nWindowHeight);
 
-        this.updateFrameData(nWidth, nHeight, pData);
+        this.updateFrameData(nWidth, nHeight, pData,dWidth,dHeight);
 
         var program = this.YUVProgram;
         gl.useProgram(program);
@@ -247,7 +250,7 @@ var fragmentYUVShader = [
      * @param nHeight   高度
      * @param nHeight   帧数据
      */
-    RenderManager.prototype.updateFrameData = function(width, height, data) {
+    RenderManager.prototype.updateFrameData = function(width, height, data,dWidth,dHeight) {
 
         var gl = this.contextGL;
 
@@ -256,24 +259,73 @@ var fragmentYUVShader = [
         var vTextureRef = this.vTextureRef;
 
         var i420Data = data;
+        // debugger;
+        // var yDataLength = dWidth * dHeight;
+        // var yData = i420Data.subarray(0, yDataLength);
+        // gl.activeTexture(gl.TEXTURE0);
+        // gl.bindTexture(gl.TEXTURE_2D, yTextureRef);
+        // gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth, dHeight, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, yData);
+        //
+        // var cbDataLength = dWidth/2 * dHeight/2;
+        // var cbData = i420Data.subarray(width*height, width*height + cbDataLength);
+        // gl.activeTexture(gl.TEXTURE1);
+        // gl.bindTexture(gl.TEXTURE_2D, uTextureRef);
+        // gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth/2, dHeight/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, cbData);
+        //
+        // var crDataLength = cbDataLength;
+        // var crData = i420Data.subarray(width*height + width*height/4, width*height + width*height/4 + crDataLength);
+        // gl.activeTexture(gl.TEXTURE2);
+        // gl.bindTexture(gl.TEXTURE_2D, vTextureRef);
+        // gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth/2, dHeight/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, crData);
 
-        var yDataLength = width * height;
-        var yData = i420Data.subarray(0, yDataLength);
+
+        // //裁剪宽
+        var yDataLength = dWidth * dHeight;
+        var yData=new Uint8Array(yDataLength) ;
+        for(var i=0;i<dHeight;i++)
+        {
+            //var ySonData=new Uint8Array(dWidth) ;
+            var ySonData = i420Data.subarray(i*width, i*width+dWidth);
+            for (var j = 0; j < dWidth; j++) {
+                yData[i*dWidth + j] = ySonData[j];
+            }
+        }
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, yTextureRef);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, width, height, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, yData);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth, dHeight, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, yData);
+        yData=null;
+        ySonData=null;
 
-        var cbDataLength = width/2 * height/2;
-        var cbData = i420Data.subarray(yDataLength, yDataLength + cbDataLength);
+        var cbDataLength = dWidth/2 * dHeight/2;
+        var cbData =new Uint8Array(cbDataLength);
+        //var cbSonData=new Uint8Array(dWidth/2) ;
+        for(var i=0;i<dHeight/2;i++)
+        {
+             var cbSonData = i420Data.subarray(width*height+i*width/2, width*height+i*width/2+dWidth/2);
+            for (var j = 0; j < dWidth/2; j++) {
+                cbData[i*dWidth/2 + j] = cbSonData[j];
+            }
+        }
         gl.activeTexture(gl.TEXTURE1);
         gl.bindTexture(gl.TEXTURE_2D, uTextureRef);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, width/2, height/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, cbData);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth/2, dHeight/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, cbData);
+        cbData=null;
+        cbSonData=null;
 
         var crDataLength = cbDataLength;
-        var crData = i420Data.subarray(yDataLength + cbDataLength, yDataLength + cbDataLength + crDataLength);
+        var crData = new Uint8Array(crDataLength);
+        for(var i=0;i<dHeight/2;i++)
+        {
+            var crSonData = i420Data.subarray(width*height*5/4+i*width/2, width*height*5/4+i*width/2+dWidth/2);
+            for (var j = 0; j < dWidth/2; j++) {
+                crData[i*dWidth/2 + j] = crSonData[j];
+            }
+        }
         gl.activeTexture(gl.TEXTURE2);
         gl.bindTexture(gl.TEXTURE_2D, vTextureRef);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, width/2, height/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, crData);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, dWidth/2, dHeight/2, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, crData);
+        crData=null;
+        crSonData=null;
     };
 
     /**

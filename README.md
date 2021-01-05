@@ -48,10 +48,10 @@ The monitoring address can be obtained from interface: Please turn to HTTP inter
 
 ## Monitoring address：
 #### Address structure (adaptive address fits live view as well)：
-    live-view：ezopen:// [verification code]@open.ezviz.com[deviceSerial]/[channelNo] [.hd].live
-	Address exemple：ezopen://open.ezviz.com/203751922/1.hd.live
+    live-view：ezopen:// [verification code]@[area]open.ezviz.com[deviceSerial]/[channelNo] [.hd].live
+	Address exemple：ezopen://isgpopen.ezviz.com/203751922/1.hd.live
 	playback：ezopen:// [verification code]@open.ezviz.com/[deviceSerial]/[channelNo] [.hd].rec[?begin= yyyyMMddhhmmss&end= yyyyMMddhhmmss]
-	Address example：ezopen://open.ezviz.com/203751922/1.rec?begin=20190317000000&begin=20190317235959
+	Address example：ezopen://isgpopen.ezviz.com/203751922/1.rec?begin=20190317000000&begin=20190317235959
 
 When the playback address does not have the time parameter, the default value is 0:00:00 to 23:59:59. The default will also be automatically supplemented. For example, “begin=2019031709” ， system will automatically add to “begin=20190317090000&end=20190317235959”
 
@@ -75,9 +75,6 @@ var player = new EZUIPlayer({
       decoderPath: '{location path}',
       width: 600,
       height: 400,
-      env:{
-       domain: "https://isgpopen.ezvizlife.com"
-      }
     });
 //play
         player.play();
@@ -88,10 +85,9 @@ var player = new EZUIPlayer({
 |Items|Example|Default value|Instrument|
 |:---|:---:|:---|:---|
 |id|myPlayer|null|*required, element tag id|
-|url|ezopen://open.ezviz.com/203751922/1.live|null|monitoring address|
+|url|ezopen://[area]open.ezviz.com/203751922/1.live|null|monitoring address|
 |accessToken|"at.8o2k6dbpcvtr13reaa96hbnya6fee2wf-9gu6zcjmh2-1j4yrsb-imvlc5poc"|null|AccessToken obtained from the official website or corresponding interface|
 |decoderPath|Route of decoder ezuikit.js|null|*required， live view need to load the local decoder, please fill in the corresponding path of ezuikit.|
-|env|{domain: "{domain}"}|null|*required, Please choose area ,check the end of document|
 |autoplay|true|true|Whether automatically play|
 |width|400|null|Video element width|
 |height|400|null|Video element height|
