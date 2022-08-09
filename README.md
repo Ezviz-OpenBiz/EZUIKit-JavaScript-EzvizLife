@@ -75,6 +75,9 @@ var player = new EZUIPlayer({
       decoderPath: '{location path}',
       width: 600,
       height: 400,
+      env:{
+      	domain: "https://isgpopen.ezvizlife.com"
+      }
     });
 
 ```
